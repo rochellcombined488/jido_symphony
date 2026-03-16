@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd "$(dirname "$0")" || exit 1
+SNAME="$(basename "$(pwd)")"
+export PORT="${PORT:-$(phx-port)}"
+export WORKFLOW_PATH="${WORKFLOW_PATH:-$HOME/github/chgeuer/symphony_demo/WORKFLOW.md}"
+export BEADS_ROOT="${BEADS_ROOT:-$HOME/github/chgeuer/symphony_demo}"
+
+# Log to run.log. Use `tail -f run.log` to follow.
+exec elixir --sname "$SNAME" --cookie devcookie -S mix phx.server 2>&1 | tee run.log
