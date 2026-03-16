@@ -55,6 +55,21 @@ mix specs.check
 mix pr_body.check --file /path/to/pr_body.md
 ```
 
+## Server Management
+
+Use `just` recipes to manage the development server:
+
+- `just start` — start the server (foreground, visible output)
+- `just start-bg` — start the server in the background
+- `just open` — open the app in the browser (auto-starts if needed)
+- `just stop` — gracefully stop the running BEAM node
+- `just status` — check if the BEAM node is running
+- `just rpc '<expression>'` — evaluate an Elixir expression on the running node
+- `just port` — show the assigned port number
+
+The server uses `phx-port` for stable port assignment. Never hardcode port numbers.
+To make HTTP requests against the running server, use `http://localhost:$(phx-port)`.
+
 ## Docs Update Policy
 
 If behavior/config changes, update docs in the same PR:
